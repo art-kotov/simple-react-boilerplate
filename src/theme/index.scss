@@ -1,0 +1,10 @@
+@import "~normalize.css";
+@import "breakpoint";
+@import "palette";
+
+body {
+  background-color: $c-paletteColor1;
+  @media #{$m-desktopS} {
+    background-color: #fff;
+  }
+}
