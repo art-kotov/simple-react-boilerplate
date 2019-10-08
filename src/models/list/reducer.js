@@ -5,11 +5,11 @@ const initialState = [];
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-  case types.FILL_USERS:
-    return action.payload;
+    case types.FILL_USERS:
+      return action.payload;
 
-  default:
-    return state;
+    default:
+      return state;
   }
 };
 

@@ -1,21 +1,13 @@
 // Core
 import React from "react";
-import { func, array } from "prop-types";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //Actions
 import { usersActions } from "models/list/actions";
 
-const mapStateToProps = state => {
-  return {
-    users: state.users
-  };
-};
+const UserList = () => {
+  const users = useSelector(state => state.users);
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = {
-  fetchUsersAsync: usersActions.fetchUsersAsync
-};
-
-const UserList = ({ users = [], fetchUsersAsync }) => {
   return (
     <div>
       <div>
@@ -23,17 +15,11 @@ const UserList = ({ users = [], fetchUsersAsync }) => {
           <div key={index}>{item.name}</div>
         ))}
       </div>
-      <button onClick={fetchUsersAsync}>Fetch Users</button>
+      <button onClick={() => dispatch(usersActions.fetchUsersAsync())}>
+        Fetch Users
+      </button>
     </div>
   );
 };
 
-UserList.propTypes = {
-  fetchUsersAsync: func.isRequired,
-  users: array.isRequired
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserList);
+export default UserList;
