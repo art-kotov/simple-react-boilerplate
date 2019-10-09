@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "theme/index.scss";
+import UserList from "../UserList";
 
 function App() {
-  const [calc, setCalc] = useState(0);
   return (
     <div>
-      <div>{calc}</div>
-      <button onClick={() => setCalc(prevCalc => prevCalc + 1)}>+</button>
+      <UserList />
     </div>
   );
 }

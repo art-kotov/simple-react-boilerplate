@@ -1,31 +1,22 @@
 import { types, flow } from "mobx-state-tree";
-import { api } from "../services/api";
+import { api } from "../services/index";
 
 const { string, optional, boolean, model, maybeNull, number, array } = types;
 
 const UserDataModel = model({
-  email: string,
-  firstName: string
+  id: number,
+  name: string
 });
 
 const UserStore = model("UserStore", {
-  userData: maybeNull(UserDataModel),
-  userId: maybeNull(number)
+  userData: optional(array(UserDataModel), [])
 }).actions(self => ({
-  setUsername(event) {
-    self.username = event.target.value;
-  },
-
-  setPassword(event) {
-    self.password = event.target.value;
-  },
-  logIn: async ev => {
-    ev.preventDefault();
-    try {
-    } catch (e) {
-    } finally {
-    }
-  }
+  fetchUsers: flow(function*() {
+    const response = yield api.users.fetch();
+    const data = yield response.json();
+    self.userData = data;
+    console.log(data);
+  })
 }));
 
 export default UserStore;
