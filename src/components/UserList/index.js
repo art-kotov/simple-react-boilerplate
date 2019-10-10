@@ -1,21 +1,20 @@
 // Core
-import React from "react";
-import { observer, inject } from "mobx-react";
+import React, { useContext } from "react";
+import { observer, inject, MobXProviderContext } from "mobx-react";
 
-const UserList = inject("userStore")(
-  observer(props => {
-    console.log(props);
-    return (
+const UserList = observer(() => {
+  const { userStore } = useContext(MobXProviderContext);
+
+  return (
+    <div>
       <div>
-        <div>
-          {props.userStore.userData.map(i => (
-            <div>123</div>
-          ))}
-        </div>
-        <button onClick={props.userStore.fetchUsers}>Fetch Users</button>
+        {userStore.userData.map(i => (
+          <div>123</div>
+        ))}
       </div>
-    );
-  })
-);
+      <button onClick={userStore.fetchUsers}>Fetch Users</button>
+    </div>
+  );
+});
 
 export default UserList;

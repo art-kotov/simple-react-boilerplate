@@ -9,14 +9,16 @@ const UserDataModel = model({
 });
 
 const UserStore = model("UserStore", {
-  userData: optional(array(UserDataModel), [])
+  userData: optional(array(UserDataModel), []),
+  isFetching: maybeNull(types.boolean)
 }).actions(self => ({
   fetchUsers: flow(function*() {
     const response = yield api.users.fetch();
     const data = yield response.json();
     self.userData = data;
     console.log(data);
-  })
+  }),
+  getUsers() {}
 }));
 
 export default UserStore;
