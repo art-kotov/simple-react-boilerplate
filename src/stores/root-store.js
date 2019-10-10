@@ -1,12 +1,9 @@
-// bring in Reactotron
-
-
 // Core
+import Reactotron from "reactotron-react-js";
 import { types } from "mobx-state-tree";
 
 // Stores
 import UserStore from "./user-store";
-import Reactotron from "reactotron-react-js";
 
 export const RootStore = types.model("RootStore", {
   userStore: UserStore
