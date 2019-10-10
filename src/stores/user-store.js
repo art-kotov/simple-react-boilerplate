@@ -16,7 +16,6 @@ const UserStore = model("UserStore", {
     const response = yield api.users.fetch();
     const data = yield response.json();
     self.userData = data;
-    console.log(data);
   }),
   getUsers() {}
 }));

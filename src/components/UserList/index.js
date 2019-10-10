@@ -4,7 +4,6 @@ import { observer, MobXProviderContext } from "mobx-react";
 
 const UserList = observer(() => {
   const { userStore } = useContext(MobXProviderContext);
-
   return (
     <div>
       <div>
