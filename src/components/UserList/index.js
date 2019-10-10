@@ -1,6 +1,6 @@
 // Core
 import React, { useContext } from "react";
-import { observer, inject, MobXProviderContext } from "mobx-react";
+import { observer, MobXProviderContext } from "mobx-react";
 
 const UserList = observer(() => {
   const { userStore } = useContext(MobXProviderContext);
@@ -9,7 +9,7 @@ const UserList = observer(() => {
     <div>
       <div>
         {userStore.userData.map(i => (
-          <div>123</div>
+          <div key={i.id}>{i.name}</div>
         ))}
       </div>
       <button onClick={userStore.fetchUsers}>Fetch Users</button>

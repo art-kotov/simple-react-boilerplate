@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+// Core
+import React from "react";
+//Instruments
 import "theme/index.scss";
+//Components
 import UserList from "../UserList";
 
-function App() {
+const App = () => {
   return (
     <div>
       <UserList />
     </div>
   );
-}
+};
 
 export default App;
