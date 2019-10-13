@@ -1,15 +1,18 @@
 // Core
 import Reactotron from "reactotron-react-js";
-import { types } from "mobx-state-tree";
+import { onSnapshot, types } from "mobx-state-tree";
 
 // Stores
 import UserStore from "./user-store";
+import UiStore from "./ui-store";
 
 export const RootStore = types.model("RootStore", {
-  userStore: UserStore
+  userStore: UserStore,
+  ui: UiStore
 });
 export const store = RootStore.create({
-  userStore: {}
+  userStore: {},
+  ui: {}
 });
 
 Reactotron.trackMstNode(store);

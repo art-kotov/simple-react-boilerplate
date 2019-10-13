@@ -1,5 +1,13 @@
-import { types, flow } from "mobx-state-tree";
+import {
+  types,
+  flow,
+  getParent,
+  getPath,
+  getRoot,
+  getRelativePath
+} from "mobx-state-tree";
 import { api } from "../services/index";
+import { checkResponse } from "../services/helpers";
 
 const { string, optional, boolean, model, maybeNull, number, array } = types;
 
@@ -13,9 +21,15 @@ const UserStore = model("UserStore", {
   isFetching: maybeNull(types.boolean)
 }).actions(self => ({
   fetchUsers: flow(function*() {
-    const response = yield api.users.fetch();
-    const data = yield response.json();
-    self.userData = data;
+    try {
+      const response = yield api.users.fetch();
+      if(!response.ok) {
+        throw new Error()
+      }
+      self.userData = response.data;
+    } catch (e) {
+      console.warn("user error", e);
+    }
   }),
   getUsers() {}
 }));
